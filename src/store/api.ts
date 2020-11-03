@@ -3,11 +3,14 @@ import {
     fetchNewsSuccess,
     fetchNewsError,
   } from "./actions";
+
+  const endPoint: string = "https://cn-node.herokuapp.com";
+  // const endPoint: string = "http://localhost:2000";
   
-  export function fetchNews(page?: string) {
+  export function fetchNews(searchInput?: string, page?: string) {
     return (dispatch: any) => {
       dispatch(fetchNewsPending());
-      fetch(`http://localhost:2000/news?q=politics&page=${page}`)
+      fetch(`${endPoint}/news?q=${searchInput}&page=${page}`)
         .then((res) => res.json())
         .then((res) => {
           if (res.error) {
